@@ -1,5 +1,3 @@
-
-
 html, body {
     font-family: 'Raleway', sans-serif;
     background-color: #e3dcca;
@@ -29,5 +27,39 @@ h1 {
 
 .container {
     position: relative;
-    background-color: white;
+    background-color: #a89971;
+    height: 100vh;
+}
+
+.projectsgrid {
+    padding-top: 30vh;
+    padding-bottom: 30vh;
+    padding-left: 20vw;
+    padding-right: 20vw;
+    display: inline-grid;
+    grid-template-columns: 15vw 15vw 15vw 15vw;
+}
+
+.project {
+    display: table-cell;
+    vertical-align: middle;
+    width: 14vw;
+    height: 17.5vh;
+    line-height: 17.5vh;
+    font-size: 4vh;
+    text-align: center;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 30px;
+    margin-bottom: 1.5vh;
+}
+
+.project:hover {
+    cursor: pointer;
+}
+
+img {
+    padding: 20px;
+    width: 75%;
+    height: 75%;
 }

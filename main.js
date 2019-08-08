@@ -1,12 +1,16 @@
-var finalText = ["hey dud", "welcome"];
+var finalText = ["Hello,", "I'm Drew", "Enjoy"];
 var currentText = "";
 var currentDelay = 0;
+var currentLine = 0;
+var textFinished = false;
 
+/* Starts running the animation once the page is loaded */
 function loaded() {
     mouseBlink();
-    createLine(0);
+    createLine(currentLine);
 }
 
+/* Displays a "line", aka a string index of the finalText array */
 function createLine(lineNum){
     sleep(1000).then(async function (){
         for(var i = 0; i < finalText[lineNum].length; i++){
@@ -15,9 +19,10 @@ function createLine(lineNum){
     });
 }
 
+/* Controls the cursor blinkage. Switches on and off every 530ms */
 async function mouseBlink(){
     var visible = false;
-    while(true){
+    while(!textFinished){
         if(visible){
             $('.typetext')[0].innerHTML = currentText + "&nbsp;";
             visible = false;
@@ -28,6 +33,7 @@ async function mouseBlink(){
         }
         await sleep(530);
     }
+    $('.typetext')[0].innerHTML = currentText;
 }
 
 async function setTextDelay(charIndex, lineNum) {
@@ -45,11 +51,22 @@ async function setTextDelay(charIndex, lineNum) {
         else{
             $('.typetext')[0].innerHTML = currentText;
         }
-        if(charIndex + 1 == finalText[lineNum].length){
+        if(charIndex + 1 == finalText[lineNum].length && lineNum != finalText.length - 1){
+            currentDelay = 0;
             setTimeout(function(){
-                console.log("deleting now");
                 clearText(finalText[lineNum].length)
             }, 1250);
+        }
+        else if(charIndex + 1 == finalText[lineNum].length && lineNum == finalText.length - 1){
+            textFinished = true;
+            sleep(2000).then(function(){
+                $("body,html").animate(
+                    {
+                    scrollTop: $('#main').offset().top
+                    },
+                    800,
+                )
+            });
         }
     }, currentDelay);
 }
@@ -65,7 +82,11 @@ async function clearText(charsToClear){
             currentText = inner.substring(0, inner.length - 7);
             $('.typetext')[0].innerHTML = currentText + "&nbsp;";
         }
-        await sleep(325);
+        await sleep(280);
+        if(i == 1){
+            currentLine++;
+            createLine(currentLine);
+        }
     }
 }
 
