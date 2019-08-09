@@ -3,6 +3,7 @@ var currentText = "";
 var currentDelay = 0;
 var currentLine = 0;
 var textFinished = false;
+var skipPressed = false;
 
 /* Starts running the animation once the page is loaded */
 function loaded() {
@@ -37,7 +38,7 @@ async function mouseBlink(){
 }
 
 async function setTextDelay(charIndex, lineNum) {
-    var delay = ((Math.floor(Math.random() * 12) + 3) * 50);
+    var delay = ((Math.floor(Math.random() * 8) + 3) * 50);
     currentDelay += delay;
     setTimeout(function(){
         currentText = currentText.concat(finalText[lineNum].substring(charIndex, charIndex + 1));
@@ -59,14 +60,16 @@ async function setTextDelay(charIndex, lineNum) {
         }
         else if(charIndex + 1 == finalText[lineNum].length && lineNum == finalText.length - 1){
             textFinished = true;
-            sleep(2000).then(function(){
-                $("body,html").animate(
-                    {
-                    scrollTop: $('#main').offset().top
-                    },
-                    800,
-                )
-            });
+            if(!skipPressed){
+                sleep(1500).then(function(){
+                    $("body,html").animate(
+                        {
+                        scrollTop: $('#main').offset().top
+                        },
+                        800,
+                    )
+                });
+            }
         }
     }, currentDelay);
 }
@@ -82,12 +85,22 @@ async function clearText(charsToClear){
             currentText = inner.substring(0, inner.length - 7);
             $('.typetext')[0].innerHTML = currentText + "&nbsp;";
         }
-        await sleep(280);
+        await sleep(230);
         if(i == 1){
             currentLine++;
             createLine(currentLine);
         }
     }
+}
+
+function skipButtonPressed(){
+    skipPressed = true;
+    $("body,html").animate(
+        {
+        scrollTop: $('#main').offset().top
+        },
+        800,
+    );
 }
 
 const sleep = (milliseconds) => {
