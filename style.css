@@ -30,6 +30,17 @@ a {
     font-size: 30vh;
 }
 
+.replayicon {
+    position: absolute;
+    width: 85px;
+    height: 85px;
+    z-index: -1;
+    top: calc(100vh - 115px);
+    left: 45px;
+}
+
+.replayicon:hover { cursor: pointer }
+
 .skipicon {
     position: absolute;
     width: 100px;

@@ -7,6 +7,7 @@ var skipPressed = false;
 
 /* Starts running the animation once the page is loaded */
 function loaded() {
+    resetVars();
     mouseBlink();
     createLine(currentLine);
 }
@@ -67,8 +68,12 @@ async function setTextDelay(charIndex, lineNum) {
                         scrollTop: $('#main').offset().top
                         },
                         800,
-                    )
+                    );
+                    $('.replayicon').css("z-index", 1);
                 });
+            }
+            else{
+                $('.replayicon').css("z-index", 1);
             }
         }
     }, currentDelay);
@@ -91,6 +96,19 @@ async function clearText(charsToClear){
             createLine(currentLine);
         }
     }
+}
+
+function resetVars(){
+    $('.replayicon').css("z-index", -1);
+    currentText = "";
+    currentDelay = 0;
+    currentLine = 0;
+    textFinished = false;
+    skipPressed = false;
+}
+
+function replayButtonPressed(){
+    loaded();
 }
 
 function skipButtonPressed(){
