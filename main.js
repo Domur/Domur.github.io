@@ -61,20 +61,23 @@ async function setTextDelay(charIndex, lineNum) {
         }
         else if(charIndex + 1 == finalText[lineNum].length && lineNum == finalText.length - 1){
             textFinished = true;
-            if(!skipPressed){
-                sleep(1500).then(function(){
-                    $("body,html").animate(
-                        {
-                        scrollTop: $('#main').offset().top
-                        },
-                        800,
-                    );
-                    $('.replayicon').css("z-index", 1);
-                });
-            }
-            else{
+            sleep(200).then(function(){
+                $('.typetext').css("display", "none");
+                $('.typetext').fadeIn(1800);
+                $('.replayicon').css("display", "none");
+                $('.replayicon').fadeIn(1800);
                 $('.replayicon').css("z-index", 1);
-            }
+                if(!skipPressed){
+                    sleep(1500).then(function(){
+                        $("body,html").animate(
+                            {
+                            scrollTop: $('#main').offset().top
+                            },
+                            800,
+                        );
+                    });
+                }
+            });
         }
     }, currentDelay);
 }
