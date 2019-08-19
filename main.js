@@ -4,6 +4,7 @@ var currentDelay = 0;
 var currentLine = 0;
 var textFinished = false;
 var skipPressed = false;
+var muted = false;
 
 /* Starts running the animation once the page is loaded */
 function loaded() {
@@ -39,6 +40,7 @@ async function mouseBlink(){
 }
 
 async function setTextDelay(charIndex, lineNum) {
+    var audio = new Audio("resources/keypress.mp3");
     var delay = ((Math.floor(Math.random() * 8) + 3) * 50);
     currentDelay += delay;
     setTimeout(function(){
@@ -53,6 +55,7 @@ async function setTextDelay(charIndex, lineNum) {
         else{
             $('.typetext')[0].innerHTML = currentText;
         }
+        audio.play();
         if(charIndex + 1 == finalText[lineNum].length && lineNum != finalText.length - 1){
             currentDelay = 0;
             setTimeout(function(){
