@@ -97,6 +97,7 @@ a {
 
 .project:hover {
     cursor: pointer;
+    background-color: #e3dcca;
 }
 
 .projectname {
