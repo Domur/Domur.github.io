@@ -110,3 +110,18 @@ a {
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
 }
+
+#social {
+    position: absolute;
+    display: flex;
+    width: 1vw;
+    top: calc(100vh - 120px);
+    left: calc(50vw - 95px);
+}
+
+#github img, #linkedin img{
+    max-width: 75px;
+    max-height: 75px;
+    padding-right: 20px;
+}
+
