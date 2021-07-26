@@ -85,6 +85,7 @@ a {
     vertical-align: middle;
     width: 200px;
     height: 200px;
+    background-color: #928664;
     /*line-height: 200px;
     font-size: 35px; */
     text-align: center;
@@ -97,7 +98,7 @@ a {
 
 .project:hover {
     cursor: pointer;
-    background-color: #e3dcca;
+    background-color: #aca286;
 }
 
 .projectname {
