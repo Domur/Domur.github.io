@@ -10,6 +10,9 @@ module.exports = {
         'water-blue': '#A4EBF3',
         'light-gray': '#AAAAAA',
       },
+      fontFamily: {
+        'mono': ['"Courier New"', 'monospace'],
+      },
     },
   },
   plugins: [],
